@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package chat;
+
+// chat service definition
+service Chat {
+    rpc Subscribe(Id) returns (stream Message); // 订阅消息
+    rpc Send(Message) returns (Nil); // 发送消息
+    rpc Reg(Id) returns (Nil); // 注册一个EndPoint
+}
+
+message Nil { }
+
+message Message {
+    uint64 Id=1;
+    bytes Body=2;
+}
+
+message Id{
+    uint64 Id=1;
+}
